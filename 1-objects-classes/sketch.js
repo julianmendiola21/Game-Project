@@ -10,7 +10,7 @@ function setup() {
 
 
 function draw(){
-	background(220);
+	background(250,100,0);
     b.drawBall(); //draw the ball called b (go look in the Ball class for the drawBall function)
     b.moveBall(); //move the ball called b (go look in the Ball class for the moveBall function)
     anotherBall.drawBall();
