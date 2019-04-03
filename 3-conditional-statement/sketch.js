@@ -6,6 +6,7 @@ let me;
 
 
 function setup() {
+
   createCanvas(500, 400);
 
   //make one avatar called me
@@ -14,13 +15,17 @@ function setup() {
 }
 
 function draw(){
-	background(220);
+  //let f = random (255)
+  //let g = random (255)
+  //let h = random (255)
+
+	background("blue");
 
   me.drawMe();
   me.moveMe();
 
   if (frameCount % 25 == 0) {
-      let  b = new Ball(width, random(0,height), -3);
+      let  b = new Ball(width, random(0,height), -10);
       balls.push(b);
       console.log(balls); //print the balls array to the console
     }
@@ -44,12 +49,16 @@ class Avatar {
 	}
 
 	drawMe(){  // draw the running person
-    		stroke("green");
-        strokeWeight(3);
-    		fill("blue");
+    		stroke("black");
+        strokeWeight(1);
+    		fill("purple");
+        triangle (this.x+15,this.y,this.x-15,this.y,this.x,this.y-40)
+        fill("yellow")
 		    ellipse(this.x,this.y,20,20);
         line(this.x,this.y, this.x, this.y+40);
-        line(this.x, this.y+40, this.x-20, this.y+60);
+        line(this.x+40, this.y+35, this.x-20, this.y+45);
+        fill ("brown")
+        quad (this.x-20,this.y+45,this.x-10,this.y+45,this.x-30,this.y+55,this.x-30,this.y+55)
         line(this.x, this.y+40, this.x+10, this.y+50);
         line(this.x+10, this.y+50, this.x+5, this.y+60);
         line(this.x, this.y+15, this.x-10, this.y+25);
@@ -58,19 +67,24 @@ class Avatar {
 
 	moveMe(){
     if (keyIsDown(UP_ARROW)) { //if you hold the up arrow, move up by speed
-       this.y -= this.speed;
+       this.y -= this.speed+5;
     }
 
     if (keyIsDown(DOWN_ARROW)) { // if you hold the down arrow, move down by speed
-        this.y += this.speed;
+        this.y += this.speed+5;
     }
+
+    if (keyIsDown(RIGHT_ARROW)) { // if you hold the right arrow, move right by speed
+        this.x += this.speed+5;
+    }
+
+    if (keyIsDown(LEFT_ARROW)) { // if you hold the left arrow, move left by speed
+        this.x -= this.speed+5;
 	}
 
-  die(){
-
-  }
-
+ }
 }
+
 
 
 //ball class from which to create new balls with similar properties.
@@ -85,16 +99,19 @@ class Ball {
 
 	// draw a ball on the screen at x,y
 	drawBall(){
+    let c = random (255)
+    let d = random (255)
+    let e = random (255)
     	stroke(0);
       strokeWeight(1);
-    	fill("red");
-		  ellipse(this.x,this.y,10,10);
+    	fill(c,d,e);
+		  ellipse(this.x,this.y,50,5);
 	}
 
 	//update the location of the ball, so it moves across the screen
 	moveBall(){
 		this.x = this.x+ this.speed;
-		this.y = this.y+.5;
+		this.y = this.y+0;
 	}
 
 	//if the ball hits the person, change the speed value to negative (send it in the opposite direction)
